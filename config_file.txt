@@ -1,0 +1,40 @@
+Model files for processing seismic waveforms
+using TF_EncDecDet.py
+
+Two models are required:
+P_S Encoder-Decoder : Eq; P & S Wave phase arrival 
+P_FM                : P-Wave first motion arrival
+
+Each model requires:
+Model type with sps: [phase_detection_100] & [p_fm_100]
+directory path
+sample rate of training waveforms (must be equal for all models)
+
+duration - training length in seconds (unet models must be equal)
+trained model (.tf)
+
+
+Only change the variable assigment. Keep names and format as is!
+############## DO NOT DELETE THIS LINE #################
+[params]
+sps      = 100
+eqdet    = 0.3
+pwave    = 0.3
+swave    = 0.3
+freqmin  = 1.0
+freqmax  = 50.0
+npts_phs = 500
+
+[detection]
+path  = /Projects/detection/Model_detection_wavesSTFT/v6_LeakyReLU
+model = model_full_Detection_v6_LeakyReLU.tf
+npts  = 3072
+chans = 3
+
+
+[polarity]
+path  = /Projects/detection/Model_polarity_2class/v1
+model = model_full_Polarity_v1.tf
+npts  = 200
+
+
